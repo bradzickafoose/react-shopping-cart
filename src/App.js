@@ -8,33 +8,22 @@ import Products from './components/Products';
 import ShoppingCart from './components/ShoppingCart';
 
 function App() {
-	const [products] = useState(data);
-	const [cart, setCart] = useState([]);
+	const [ products ] = useState(data);
+	const [ cart, setCart ] = useState([]);
 
-	const addItem = item => {
+	const addItem = (item) => {
 		// add the given item to the cart
+		setCart(...cart, item);
 	};
 
 	return (
-		<div className="App">
+		<div className='App'>
 			<Navigation cart={cart} />
 
 			{/* Routes */}
-			<Route
-				exact
-				path="/"
-				render={() => (
-					<Products
-						products={products}
-						addItem={addItem}
-					/>
-				)}
-			/>
+			<Route exact path='/' render={() => <Products products={products} addItem={addItem} />} />
 
-			<Route
-				path="/cart"
-				render={() => <ShoppingCart cart={cart} />}
-			/>
+			<Route path='/cart' render={() => <ShoppingCart cart={cart} />} />
 		</div>
 	);
 }
